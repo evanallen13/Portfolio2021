@@ -25,14 +25,10 @@ a {
 }
 
 nav {
-    background: #E5E9EF;
-    color: green;
     margin-bottom: 0;
     border-bottom: none;
 }
-.nav-link {
-    color: rgba(255,255,255,.75);
-}
+
 
 /* Sticky footer styles
 -------------------------------------------------- */
