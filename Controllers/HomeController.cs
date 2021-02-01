@@ -33,5 +33,13 @@ namespace Portfolio2021.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
+        [HttpPost]
+        public JsonResult DoSomething()
+        {
+
+            return Json("Success");
+        }
     }
 }

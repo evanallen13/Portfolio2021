@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "ContactForm";
     <link rel="stylesheet" href="../css/ContactForm.css">
+    <script src="~/js/ContactForm.js"></script>
 }
 
 <div id="contactFormDiv">
@@ -20,7 +21,7 @@
             <textarea class="form-control" id="exampleInputMessage" rows="3"></textarea>
         </div>
 
-        <button type="button" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-primary" onclick="formSubmit()">Submit</button>
     </form>
     
 </div>
