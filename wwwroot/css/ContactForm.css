@@ -1,9 +1,11 @@
 ﻿
 
 #contactFormDiv {
-    width: 100vw;
-    height: 50vh;
+    width: 99vw;
+    height: 65vh;
     background-color: #f0f0f0;
+    background-image: url("https://evanallen13storage.blob.core.windows.net/background/download.jfif");
+    background-size: 100vw 100vh;
 }
 
     #contactFormDiv h1 {

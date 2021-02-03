@@ -16,11 +16,26 @@ namespace Portfolio2021
             CreateHostBuilder(args).Build().Run();
         }
 
+
+
+
         public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
+        Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
+                webBuilder.ConfigureAppConfiguration((hostingContext, config) =>
                 {
-                    webBuilder.UseStartup<Startup>();
-                });
+                    var settings = config.Build();
+                    config.AddAzureAppConfiguration(options =>
+                    {
+                        options.Connect(settings["ConnectionStrings:AppConfig"])
+                               .ConfigureRefresh(refresh =>
+                               {
+                                   refresh.Register("TestApp:Settings:Sentinel", refreshAll: true)
+                                          .SetCacheExpiration(new TimeSpan(0, 5, 0));
+                               });
+                    });
+                })
+            .UseStartup<Startup>());
     }
 }
+
