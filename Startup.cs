@@ -23,7 +23,7 @@ namespace Portfolio2021
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.Configure<Settings>(Configuration.GetSection("TestApp:Settings"));
             services.AddControllersWithViews();
             services.AddAzureAppConfiguration();
         }
@@ -43,7 +43,7 @@ namespace Portfolio2021
             }
 
             // Add the following line:
-            //app.UseAzureAppConfiguration();
+            app.UseAzureAppConfiguration();
 
             app.UseHttpsRedirection();
 

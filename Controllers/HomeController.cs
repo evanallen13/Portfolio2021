@@ -20,13 +20,13 @@ namespace Portfolio2021.Controllers
 {
     public class HomeController : Controller
     {
-        //private readonly Settings _settings;
+        private readonly Settings _settings;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IOptionsSnapshot<Settings> settings)
         {
             _logger = logger;
-            //_settings = settings.Value;
+            _settings = settings.Value;
         }
 
         public IActionResult Index()
@@ -47,25 +47,25 @@ namespace Portfolio2021.Controllers
         }
 
 
-        //[HttpPost]
-        //public JsonResult DoSomething([FromBody] QueueMessage queueMessage)
-        //{
-        //    string connectionString = _settings.evanallen13StorageConnectionString;
-        //    string queueName = "contactform";
-        //    QueueClient queueClient = new QueueClient(connectionString, queueName);
+        [HttpPost]
+        public JsonResult DoSomething([FromBody] QueueMessage queueMessage)
+        {
+            string connectionString = _settings.evanallen13StorageConnectionString;
+            string queueName = "contactform";
+            QueueClient queueClient = new QueueClient(connectionString, queueName);
 
-        //    var plainTextBytes = Encoding.UTF8.GetBytes(queueMessage.MessageJson().ToString());
-        //    var message = System.Convert.ToBase64String(plainTextBytes);
+            var plainTextBytes = Encoding.UTF8.GetBytes(queueMessage.MessageJson().ToString());
+            var message = System.Convert.ToBase64String(plainTextBytes);
 
-        //    // Create the queue if it doesn't already exist
-        //    //queueClient.CreateIfNotExists();
+            // Create the queue if it doesn't already exist
+            //queueClient.CreateIfNotExists();
 
-        //    if (queueClient.Exists())
-        //    {
-        //        // Send a message to the queue
-        //        queueClient.SendMessage(message.ToString());
-        //    }
-        //    return Json("Success");
-        //}
+            if (queueClient.Exists())
+            {
+                // Send a message to the queue
+                queueClient.SendMessage(message.ToString());
+            }
+            return Json("Success");
+        }
     }
 }
